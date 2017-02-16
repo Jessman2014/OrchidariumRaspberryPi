@@ -4,6 +4,7 @@ ptvsd.enable_attach('xplatdemo')
 
 import time
 import serial
+import json
 
 ser = serial.Serial(
     port='/dev/ttyACM0',
@@ -18,12 +19,13 @@ def reactToNewLine(newLine):
     if (newLine == "waiting for sync message"):
         try:
             sendMessage = TIME_HEADER + str(int(time.time()))
-            #ser.write()
+            ser.write(sendMessage)
             print("sending sync message")
         except:
             print("error writing time")
     else:
-        print(newLine)
+        data = json.loads(newLine)
+        print(data['tempF'])
         #parse sensor data
 
 #ser.open()
