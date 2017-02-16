@@ -16,7 +16,8 @@ def reactToNewLine(newLine):
     newLine.decode("utf-8").rstrip()
     if (newLine == "waiting for sync message"):
         try:
-            ser.write(TIME_HEADER + str(int(time.time())))
+            #ser.write(TIME_HEADER + str(int(time.time())))
+            print("sending sync message")
         except:
             print("error writing time")
     else:
