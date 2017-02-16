@@ -19,13 +19,11 @@ def reactToNewLine(newLine):
     if (newLine == "waiting for sync message"):
         try:
             sendMessage = TIME_HEADER + str(int(time.time()))
-            ser.write(sendMessage)
+            ser.write(sendMessage.encode("utf-8"))
             print("sending sync message")
         except Exception as inst:
             print("error writing time")
             print(type(inst))     # the exception instance
-            print(inst.args)      # arguments stored in .args
-            print(inst)           # __str__ allows args to be printed directly
     else:
         #data = json.loads(newLine)
         print('loaded data')
