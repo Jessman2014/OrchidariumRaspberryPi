@@ -30,13 +30,13 @@ def reactToNewLine(newLine):
         print('loaded data')
         try:
             data = json.loads(newLine)
+            data['Id'] = 0
+            data['SoilMoisture'] = 0
+            data['DateAdded'] = str(datetime.datetime.now())
+            r = requests.post('http://plantwatcherbot.azurewebsites.net/api/SensorReadings', data = data)
         except Exception as inst:
             print(type(inst))
 
-        data['Id'] = 0
-        data['SoilMoisture'] = 0
-        data['DateAdded'] = str(datetime.datetime.now())
-        r = requests.post('http://plantwatcherbot.azurewebsites.net/api/SensorReadings', data = data)
         
         #print(data['TemperatureF'])
         #print(data['Humidity'])
