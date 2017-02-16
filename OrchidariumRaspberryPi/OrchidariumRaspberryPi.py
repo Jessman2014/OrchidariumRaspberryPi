@@ -27,13 +27,15 @@ def reactToNewLine(newLine):
             print("error writing time")
             print(type(inst))     # the exception instance
     else:
-        print('loaded data')
+        print('loaded data: ', newLine)
         try:
             data = json.loads(newLine)
-            data['Id'] = 0
-            data['SoilMoisture'] = 0
-            data['DateAdded'] = str(datetime.datetime.now())
-            r = requests.post('http://plantwatcherbot.azurewebsites.net/api/SensorReadings', data = data)
+            if 'TemperatureF' in data and 'Humidity' in data:
+                print('valid data')
+                data['Id'] = 0
+                data['SoilMoisture'] = 0
+                data['DateAdded'] = str(datetime.datetime.now())
+                r = requests.post('http://plantwatcherbot.azurewebsites.net/api/SensorReadings', data = data)
         except Exception as inst:
             print(type(inst))
 
