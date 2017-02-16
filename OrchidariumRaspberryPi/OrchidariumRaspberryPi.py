@@ -24,7 +24,7 @@ def reactToNewLine(newLine):
         except:
             print("error writing time")
     else:
-        data = json.loads(newLine)
+        #data = json.loads(newLine)
         print('loaded data')
         #print(data['tempF'])
         #parse sensor data
