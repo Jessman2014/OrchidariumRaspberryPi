@@ -22,7 +22,7 @@ def reactToNewLine(newLine):
             ser.write(sendMessage)
             print("sending sync message")
         except:
-            print("error writing time")
+            print("error writing time:", sys.exc_info()[0])
     else:
         #data = json.loads(newLine)
         print('loaded data')
