@@ -38,8 +38,8 @@ def reactToNewLine(newLine):
         data['DateAdded'] = str(datetime.datetime.now())
         r = requests.post('http://plantwatcherbot.azurewebsites.net/api/SensorReadings', data = data)
         
-        print(data['TemperatureF'])
-        print(data['Humidity'])
+        #print(data['TemperatureF'])
+        #print(data['Humidity'])
         #print(data['dateRecorded'])
 #parse sensor data
 
