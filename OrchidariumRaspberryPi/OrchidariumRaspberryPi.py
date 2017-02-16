@@ -15,7 +15,10 @@ TIME_REQUEST = 7
 def reactToNewLine(newLine):
     newLine.decode("utf-8").rstrip()
     if (newLine == "waiting for sync message"):
-        ser.write(TIME_HEADER + str(int(time.time())))
+        try:
+            ser.write(TIME_HEADER + str(int(time.time())))
+        except:
+            print("error writing time")
     else:
         print(newLine)
         #parse sensor data
