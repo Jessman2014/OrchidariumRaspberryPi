@@ -1,5 +1,6 @@
 import ptvsd
 ptvsd.enable_attach('xplatdemo')
+#xplatdemo@192.168.0.104
 
 import time
 import serial
@@ -13,10 +14,11 @@ TIME_HEADER = "T"
 TIME_REQUEST = 7
 
 def reactToNewLine(newLine):
-    newLine.decode("utf-8").rstrip()
+    newLine = newLine.decode("utf-8").strip()
     if (newLine == "waiting for sync message"):
         try:
-            #ser.write(TIME_HEADER + str(int(time.time())))
+            sendMessage = TIME_HEADER + str(int(time.time()))
+            #ser.write()
             print("sending sync message")
         except:
             print("error writing time")
