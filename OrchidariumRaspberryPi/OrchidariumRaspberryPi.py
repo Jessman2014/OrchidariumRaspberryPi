@@ -28,19 +28,24 @@ def reactToNewLine(newLine):
             print(type(inst))     # the exception instance
     else:
         print('loaded data')
-        #data = json.loads(newLine)
-        #data['Id'] = 0
-        #data['SoilMoisture'] = 0
-        #data['DateAdded'] = str(datetime.datetime.now())
-        #print(data['TemperatureF'])
-        #print(data['Humidity'])
-        #r = requests.post('http://plantwatcherbot.azurewebsites.net/api/SensorReadings', data = data)
+        try:
+            data = json.loads(newLine)
+        except Exception as inst:
+            print(type(inst))
+
+        data['Id'] = 0
+        data['SoilMoisture'] = 0
+        data['DateAdded'] = str(datetime.datetime.now())
+        r = requests.post('http://plantwatcherbot.azurewebsites.net/api/SensorReadings', data = data)
+        
+        print(data['TemperatureF'])
+        print(data['Humidity'])
         #print(data['dateRecorded'])
 #parse sensor data
 
 #ser.open()
 while True:
-    newLine = ser.readline()
+    newLine = ser.readline() #'{"TemperatureF":69.13,"Humidity":72.84,"Lux":204.00,"FoggerOn":true,"BoilerOn":true,"MainLED":true,"SecondaryLEDs":true,"dateRecorded":1487255312}' #
     if newLine:
         reactToNewLine(newLine)
 
