@@ -21,8 +21,11 @@ def reactToNewLine(newLine):
             sendMessage = TIME_HEADER + str(int(time.time()))
             ser.write(sendMessage)
             print("sending sync message")
-        except:
-            print("error writing time:", sys.exc_info()[0])
+        except Exception as inst:
+            print("error writing time")
+            print(type(inst))     # the exception instance
+            print(inst.args)      # arguments stored in .args
+            print(inst)           # __str__ allows args to be printed directly
     else:
         #data = json.loads(newLine)
         print('loaded data')
