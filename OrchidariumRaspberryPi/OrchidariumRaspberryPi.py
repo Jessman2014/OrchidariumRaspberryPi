@@ -13,6 +13,7 @@ TIME_HEADER = "T"
 TIME_REQUEST = 7
 
 def reactToNewLine(newLine):
+    newLine.decode("utf-8").rstrip()
     if (newLine == "waiting for sync message"):
         ser.write(TIME_HEADER + str(int(time.time())))
     else:
